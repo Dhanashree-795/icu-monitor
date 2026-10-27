@@ -1,0 +1,241 @@
+example_id,icu_unit,admission_type,procedure_type,condition_description,condition_category,patient_acuity_score,is_isolation,admitted_timestamp,discharged_timestamp,length_of_stay_hours,length_of_stay_days,data_source
+1,Cardiovascular ICU (CVICU),Elective,Elective angiography,"Stable, planned observation",Stable,1,0,2026-09-13T14:10:14.518790,2026-09-14T06:40:14.518790,16.5,0.69,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+2,Medical ICU (MICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,3,0,2026-08-03T04:29:44.704588,2026-08-04T14:47:44.704588,34.3,1.43,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+3,Surgical ICU (SICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,3,0,2026-09-03T01:44:35.117211,2026-09-05T21:38:35.117211,67.9,2.83,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+4,Medical ICU (MICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,4,0,2026-09-04T16:58:19.046735,2026-09-05T16:10:19.046735,23.2,0.97,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+5,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,2,0,2026-08-10T15:31:22.954540,2026-08-12T10:31:22.954540,43.0,1.79,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+6,Medical ICU (MICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,5,1,2026-08-23T11:53:53.595212,2026-08-31T04:35:53.595212,184.7,7.7,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+7,Medical ICU (MICU),Emergency,Infection admission,Suspected sepsis,Critical,5,0,2026-09-17T09:58:46.497303,2026-09-23T13:46:46.497303,147.8,6.16,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+8,Medical ICU (MICU),Emergency,Neurological admission,Stroke observation,Guarded,4,0,2026-08-05T22:19:12.998315,2026-08-07T09:31:12.998315,35.2,1.47,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+9,Surgical ICU (SICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,5,0,2026-09-06T09:55:39.551916,2026-09-12T08:07:39.551916,142.2,5.92,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+10,Surgical ICU (SICU),Elective,General surgery,Postoperative recovery,Postoperative,2,0,2026-09-08T21:46:07.125581,2026-09-10T03:52:07.125581,30.1,1.25,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+11,Medical ICU (MICU),Emergency,Renal admission,Acute kidney injury,Guarded,3,0,2026-09-20T05:26:41.313916,2026-09-23T20:44:41.313916,87.3,3.64,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+12,Cardiovascular ICU (CVICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,3,0,2026-08-10T19:42:56.649667,2026-08-12T00:36:56.649667,28.9,1.2,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+13,Cardiovascular ICU (CVICU),Elective,Elective angiography,"Stable, planned observation",Stable,2,0,2026-09-11T06:32:54.379831,2026-09-12T00:26:54.379831,17.9,0.75,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+14,Cardiovascular ICU (CVICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,2,0,2026-08-10T20:45:48.568560,2026-08-11T20:27:48.568560,23.7,0.99,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+15,Cardiovascular ICU (CVICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,3,0,2026-09-10T06:27:35.824989,2026-09-14T11:03:35.824989,100.6,4.19,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+16,Medical ICU (MICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,3,0,2026-09-17T07:03:50.835887,2026-09-18T05:15:50.835887,22.2,0.92,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+17,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,2,1,2026-09-25T08:04:24.960249,2026-09-28T14:22:24.960249,78.3,3.26,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+18,Medical ICU (MICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,5,0,2026-09-07T19:59:33.425810,2026-09-12T14:29:33.425810,114.5,4.77,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+19,Surgical ICU (SICU),Emergency,Infection admission,Suspected sepsis,Critical,4,0,2026-09-01T18:34:05.539923,2026-09-07T15:16:05.539923,140.7,5.86,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+20,Medical ICU (MICU),Emergency,Neurological admission,Stroke observation,Guarded,4,0,2026-08-14T03:02:56.626153,2026-08-15T17:56:56.626153,38.9,1.62,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+21,Surgical ICU (SICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,5,0,2026-08-30T02:55:19.807844,2026-09-03T18:55:19.807844,112.0,4.67,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+22,Surgical ICU (SICU),Elective,General surgery,Postoperative recovery,Postoperative,3,0,2026-09-05T02:58:21.514889,2026-09-05T22:58:21.514889,20.0,0.83,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+23,Medical ICU (MICU),Emergency,Renal admission,Acute kidney injury,Guarded,4,0,2026-09-01T04:45:36.299300,2026-09-06T15:39:36.299300,130.9,5.45,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+24,Medical ICU (MICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,3,0,2026-09-15T04:02:17.612594,2026-09-16T13:38:17.612594,33.6,1.4,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+25,Cardiovascular ICU (CVICU),Elective,Elective angiography,"Stable, planned observation",Stable,2,0,2026-08-26T16:40:16.863372,2026-08-27T04:40:16.863372,12.0,0.5,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+26,Cardiovascular ICU (CVICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,3,0,2026-09-27T00:38:36.018305,2026-09-28T12:20:36.018305,35.7,1.49,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+27,Cardiovascular ICU (CVICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,3,0,2026-09-21T02:43:33.591977,2026-09-23T20:07:33.591977,65.4,2.73,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+28,Medical ICU (MICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,3,0,2026-08-23T03:28:45.817059,2026-08-26T01:10:45.817059,69.7,2.9,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+29,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,4,1,2026-08-02T11:16:02.781625,2026-08-07T11:16:02.781625,120.0,5.0,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+30,Medical ICU (MICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,5,1,2026-08-15T09:13:12.825934,2026-08-20T06:01:12.825934,116.8,4.87,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+31,Medical ICU (MICU),Emergency,Infection admission,Suspected sepsis,Critical,4,1,2026-08-29T16:23:11.935116,2026-09-08T22:29:11.935116,246.1,10.25,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+32,Medical ICU (MICU),Emergency,Neurological admission,Stroke observation,Guarded,3,0,2026-09-08T19:39:04.146647,2026-09-11T16:21:04.146647,68.7,2.86,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+33,Surgical ICU (SICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,3,0,2026-08-16T19:04:45.409858,2026-08-21T11:16:45.409858,112.2,4.67,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+34,Surgical ICU (SICU),Elective,General surgery,Postoperative recovery,Postoperative,2,0,2026-09-11T22:07:42.823008,2026-09-13T07:25:42.823008,33.3,1.39,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+35,Medical ICU (MICU),Emergency,Renal admission,Acute kidney injury,Guarded,4,0,2026-08-26T21:20:24.422929,2026-08-29T16:26:24.422929,67.1,2.8,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+36,Cardiovascular ICU (CVICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,3,0,2026-08-02T13:26:52.670436,2026-08-04T02:50:52.670436,37.4,1.56,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+37,Cardiovascular ICU (CVICU),Elective,Elective angiography,"Stable, planned observation",Stable,1,0,2026-08-01T18:04:01.828485,2026-08-02T10:04:01.828485,16.0,0.67,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+38,Medical ICU (MICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,3,0,2026-08-05T11:12:01.043439,2026-08-06T14:00:01.043439,26.8,1.12,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+39,Cardiovascular ICU (CVICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,4,0,2026-08-13T19:55:53.509147,2026-08-19T05:31:53.509147,129.6,5.4,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+40,Medical ICU (MICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,4,0,2026-08-15T12:11:46.101674,2026-08-19T00:47:46.101674,84.6,3.52,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+41,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,3,1,2026-08-06T23:42:11.303713,2026-08-09T01:36:11.303713,49.9,2.08,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+42,Medical ICU (MICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,4,0,2026-09-27T17:49:52.665284,2026-10-03T22:19:52.665284,148.5,6.19,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+43,Pediatric ICU (Pedia ICU),Emergency,Infection admission,Suspected sepsis,Critical,5,0,2026-08-07T16:58:35.922514,2026-08-15T04:04:35.922514,179.1,7.46,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+44,Surgical ICU (SICU),Emergency,Neurological admission,Stroke observation,Guarded,4,0,2026-08-28T07:40:45.464741,2026-08-31T21:34:45.464741,85.9,3.58,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+45,Surgical ICU (SICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,3,0,2026-08-27T04:22:58.955069,2026-08-31T23:16:58.955069,114.9,4.79,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+46,Medical ICU (MICU),Elective,General surgery,Postoperative recovery,Postoperative,2,0,2026-09-24T08:54:49.594361,2026-09-25T15:24:49.594361,30.5,1.27,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+47,Medical ICU (MICU),Emergency,Renal admission,Acute kidney injury,Guarded,3,0,2026-08-25T00:58:46.852080,2026-08-26T04:58:46.852080,28.0,1.17,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+48,Cardiovascular ICU (CVICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,2,0,2026-08-23T10:33:44.519644,2026-08-24T23:03:44.519644,36.5,1.52,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+49,Cardiovascular ICU (CVICU),Elective,Elective angiography,"Stable, planned observation",Stable,2,0,2026-09-24T09:07:31.090739,2026-09-25T04:55:31.090739,19.8,0.83,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+50,Cardiovascular ICU (CVICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,3,0,2026-08-10T08:42:55.999381,2026-08-11T07:36:55.999381,22.9,0.95,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+51,Cardiovascular ICU (CVICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,3,0,2026-09-04T02:51:08.665714,2026-09-05T14:51:08.665714,36.0,1.5,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+52,Pediatric ICU (Pedia ICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,3,0,2026-08-04T15:37:53.081833,2026-08-06T06:55:53.081833,39.3,1.64,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+53,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,2,1,2026-08-05T07:08:42.751414,2026-08-08T14:14:42.751414,79.1,3.3,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+54,Medical ICU (MICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,4,0,2026-08-03T15:38:17.977937,2026-08-07T16:26:17.977937,96.8,4.03,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+55,Cardiovascular ICU (CVICU),Emergency,Infection admission,Suspected sepsis,Critical,5,1,2026-09-12T02:40:06.675979,2026-09-19T18:22:06.675979,183.7,7.65,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+56,Medical ICU (MICU),Emergency,Neurological admission,Stroke observation,Guarded,4,0,2026-08-28T00:06:51.845755,2026-08-31T10:42:51.845755,82.6,3.44,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+57,Surgical ICU (SICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,3,0,2026-08-01T21:02:29.902697,2026-08-04T08:26:29.902697,59.4,2.48,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+58,Surgical ICU (SICU),Elective,General surgery,Postoperative recovery,Postoperative,3,0,2026-08-09T01:26:21.114647,2026-08-10T13:02:21.114647,35.6,1.48,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+59,Medical ICU (MICU),Emergency,Renal admission,Acute kidney injury,Guarded,3,0,2026-09-21T14:58:42.022122,2026-09-24T05:46:42.022122,62.8,2.62,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+60,Cardiovascular ICU (CVICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,3,0,2026-09-06T00:20:55.939259,2026-09-07T19:56:55.939259,43.6,1.82,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+61,Cardiovascular ICU (CVICU),Elective,Elective angiography,"Stable, planned observation",Stable,1,0,2026-09-09T07:00:30.546711,2026-09-09T19:00:30.546711,12.0,0.5,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+62,Surgical ICU (SICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,3,0,2026-08-08T01:36:00.498912,2026-08-09T00:42:00.498912,23.1,0.96,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+63,Surgical ICU (SICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,4,0,2026-08-17T18:27:31.608148,2026-08-21T13:45:31.608148,91.3,3.8,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+64,Medical ICU (MICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,4,0,2026-08-30T19:34:21.652814,2026-09-02T16:16:21.652814,68.7,2.86,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+65,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,2,1,2026-08-26T01:00:21.893721,2026-08-28T17:36:21.893721,64.6,2.69,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+66,Medical ICU (MICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,5,1,2026-08-27T02:34:10.979779,2026-09-03T03:28:10.979779,168.9,7.04,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+67,Medical ICU (MICU),Emergency,Infection admission,Suspected sepsis,Critical,4,1,2026-09-25T11:04:16.732795,2026-10-01T18:46:16.732795,151.7,6.32,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+68,Cardiovascular ICU (CVICU),Emergency,Neurological admission,Stroke observation,Guarded,3,0,2026-08-26T09:42:05.032919,2026-08-28T06:42:05.032919,45.0,1.88,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+69,Cardiovascular ICU (CVICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,3,0,2026-09-22T18:29:40.168093,2026-09-26T17:29:40.168093,95.0,3.96,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+70,Pediatric ICU (Pedia ICU),Elective,General surgery,Postoperative recovery,Postoperative,2,0,2026-09-24T08:04:09.665751,2026-09-26T12:58:09.665751,52.9,2.2,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+71,Medical ICU (MICU),Emergency,Renal admission,Acute kidney injury,Guarded,3,0,2026-09-27T06:41:18.405972,2026-10-01T00:41:18.405972,90.0,3.75,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+72,Cardiovascular ICU (CVICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,3,0,2026-09-17T03:07:45.100243,2026-09-17T19:07:45.100243,16.0,0.67,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+73,Cardiovascular ICU (CVICU),Elective,Elective angiography,"Stable, planned observation",Stable,1,0,2026-08-16T21:31:40.776356,2026-08-17T14:25:40.776356,16.9,0.7,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+74,Cardiovascular ICU (CVICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,3,0,2026-08-14T07:24:25.936430,2026-08-15T09:06:25.936430,25.7,1.07,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+75,Cardiovascular ICU (CVICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,4,0,2026-08-21T17:31:18.459207,2026-08-26T07:07:18.459207,109.6,4.57,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+76,Medical ICU (MICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,3,0,2026-08-24T13:51:08.531967,2026-08-25T07:51:08.531967,18.0,0.75,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+77,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,2,0,2026-08-17T14:46:29.963318,2026-08-19T11:10:29.963318,44.4,1.85,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+78,Medical ICU (MICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,5,0,2026-08-08T01:28:42.429331,2026-08-12T11:46:42.429331,106.3,4.43,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+79,Medical ICU (MICU),Emergency,Infection admission,Suspected sepsis,Critical,4,0,2026-09-27T16:58:14.887331,2026-10-06T04:22:14.887331,203.4,8.47,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+80,Medical ICU (MICU),Emergency,Neurological admission,Stroke observation,Guarded,4,0,2026-08-26T18:57:05.174708,2026-08-29T15:09:05.174708,68.2,2.84,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+81,Surgical ICU (SICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,3,0,2026-08-23T19:16:24.984057,2026-08-26T14:40:24.984057,67.4,2.81,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+82,Surgical ICU (SICU),Elective,General surgery,Postoperative recovery,Postoperative,2,0,2026-08-31T15:53:18.556776,2026-09-02T06:29:18.556776,38.6,1.61,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+83,Medical ICU (MICU),Emergency,Renal admission,Acute kidney injury,Guarded,3,0,2026-08-22T13:54:36.217778,2026-08-26T21:12:36.217778,103.3,4.3,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+84,Cardiovascular ICU (CVICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,3,0,2026-09-09T00:44:32.880378,2026-09-10T22:56:32.880378,46.2,1.93,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+85,Cardiovascular ICU (CVICU),Elective,Elective angiography,"Stable, planned observation",Stable,2,0,2026-09-09T05:39:00.236693,2026-09-09T20:27:00.236693,14.8,0.62,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+86,Cardiovascular ICU (CVICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,2,0,2026-08-25T20:37:29.522215,2026-08-27T09:13:29.522215,36.6,1.53,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+87,Cardiovascular ICU (CVICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,3,0,2026-09-06T05:43:15.176395,2026-09-08T23:55:15.176395,66.2,2.76,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+88,Cardiovascular ICU (CVICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,3,0,2026-08-26T09:50:36.275949,2026-08-29T04:44:36.275949,66.9,2.79,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+89,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,4,1,2026-08-27T02:30:01.524863,2026-08-29T21:18:01.524863,66.8,2.78,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+90,Medical ICU (MICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,4,0,2026-08-17T21:18:03.481165,2026-08-21T09:42:03.481165,84.4,3.52,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+91,Medical ICU (MICU),Emergency,Infection admission,Suspected sepsis,Critical,5,1,2026-09-25T20:47:58.298760,2026-10-03T13:05:58.298760,184.3,7.68,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+92,Medical ICU (MICU),Emergency,Neurological admission,Stroke observation,Guarded,3,0,2026-08-02T18:11:43.954143,2026-08-05T17:41:43.954143,71.5,2.98,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+93,Surgical ICU (SICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,4,0,2026-09-05T23:47:00.824226,2026-09-10T07:23:00.824226,103.6,4.32,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+94,Surgical ICU (SICU),Elective,General surgery,Postoperative recovery,Postoperative,2,0,2026-09-12T05:41:03.414115,2026-09-13T10:29:03.414115,28.8,1.2,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+95,Medical ICU (MICU),Emergency,Renal admission,Acute kidney injury,Guarded,4,0,2026-08-15T13:34:41.575475,2026-08-18T20:16:41.575475,78.7,3.28,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+96,Cardiovascular ICU (CVICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,2,0,2026-09-15T17:47:18.850107,2026-09-17T02:41:18.850107,32.9,1.37,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+97,Cardiovascular ICU (CVICU),Elective,Elective angiography,"Stable, planned observation",Stable,2,0,2026-08-04T06:18:20.661109,2026-08-05T01:12:20.661109,18.9,0.79,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+98,Cardiovascular ICU (CVICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,3,0,2026-09-09T06:36:31.772235,2026-09-11T04:42:31.772235,46.1,1.92,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+99,Cardiovascular ICU (CVICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,4,0,2026-09-25T18:03:19.626554,2026-09-30T13:15:19.626554,115.2,4.8,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+100,Medical ICU (MICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,4,0,2026-09-18T18:47:48.615396,2026-09-20T06:17:48.615396,35.5,1.48,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+101,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,2,0,2026-08-29T00:32:39.161588,2026-08-31T08:08:39.161588,55.6,2.32,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+102,Medical ICU (MICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,5,0,2026-08-17T08:26:11.132464,2026-08-24T18:38:11.132464,178.2,7.42,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+103,Cardiovascular ICU (CVICU),Emergency,Infection admission,Suspected sepsis,Critical,4,1,2026-08-19T23:35:36.224831,2026-08-25T13:47:36.224831,134.2,5.59,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+104,Medical ICU (MICU),Emergency,Neurological admission,Stroke observation,Guarded,3,0,2026-09-11T12:59:12.474141,2026-09-13T17:29:12.474141,52.5,2.19,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+105,Pediatric ICU (Pedia ICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,4,0,2026-09-01T23:39:20.148140,2026-09-05T05:57:20.148140,78.3,3.26,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+106,Surgical ICU (SICU),Elective,General surgery,Postoperative recovery,Postoperative,2,0,2026-09-20T07:25:29.442812,2026-09-22T07:13:29.442812,47.8,1.99,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+107,Medical ICU (MICU),Emergency,Renal admission,Acute kidney injury,Guarded,4,0,2026-08-29T03:46:17.852089,2026-09-02T08:28:17.852089,100.7,4.2,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+108,Cardiovascular ICU (CVICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,3,0,2026-09-01T17:30:31.660756,2026-09-03T03:54:31.660756,34.4,1.43,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+109,Cardiovascular ICU (CVICU),Elective,Elective angiography,"Stable, planned observation",Stable,1,0,2026-08-29T19:31:16.566853,2026-08-30T11:07:16.566853,15.6,0.65,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+110,Cardiovascular ICU (CVICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,3,0,2026-09-12T13:51:14.143242,2026-09-14T05:15:14.143242,39.4,1.64,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+111,Cardiovascular ICU (CVICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,3,0,2026-09-27T13:00:38.766695,2026-09-29T01:00:38.766695,36.0,1.5,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+112,Medical ICU (MICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,3,0,2026-08-06T05:31:35.209296,2026-08-07T20:19:35.209296,38.8,1.62,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+113,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,3,1,2026-08-16T12:13:07.822153,2026-08-19T00:49:07.822153,60.6,2.52,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+114,Medical ICU (MICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,5,1,2026-09-25T19:41:08.764097,2026-10-04T20:35:08.764097,216.9,9.04,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+115,Medical ICU (MICU),Emergency,Infection admission,Suspected sepsis,Critical,4,0,2026-09-14T00:38:02.275858,2026-09-24T12:20:02.275858,251.7,10.49,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+116,Medical ICU (MICU),Emergency,Neurological admission,Stroke observation,Guarded,3,0,2026-09-15T21:43:34.570039,2026-09-18T19:55:34.570039,70.2,2.93,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+117,Surgical ICU (SICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,3,0,2026-09-25T17:27:23.132889,2026-09-29T12:33:23.132889,91.1,3.8,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+118,Surgical ICU (SICU),Elective,General surgery,Postoperative recovery,Postoperative,3,0,2026-09-09T09:14:32.576884,2026-09-11T12:50:32.576884,51.6,2.15,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+119,Medical ICU (MICU),Emergency,Renal admission,Acute kidney injury,Guarded,3,0,2026-08-28T11:02:51.276514,2026-08-31T10:14:51.276514,71.2,2.97,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+120,Cardiovascular ICU (CVICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,2,0,2026-09-15T16:54:31.106324,2026-09-17T13:36:31.106324,44.7,1.86,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+121,Cardiovascular ICU (CVICU),Elective,Elective angiography,"Stable, planned observation",Stable,1,0,2026-09-04T02:09:31.051847,2026-09-05T00:21:31.051847,22.2,0.92,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+122,Cardiovascular ICU (CVICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,3,0,2026-08-24T11:18:58.385244,2026-08-25T12:12:58.385244,24.9,1.04,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+123,Cardiovascular ICU (CVICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,3,0,2026-09-04T20:56:13.220699,2026-09-08T10:26:13.220699,85.5,3.56,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+124,Medical ICU (MICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,4,0,2026-09-19T22:24:37.925008,2026-09-21T14:00:37.925008,39.6,1.65,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+125,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,2,0,2026-09-03T08:18:20.079051,2026-09-06T15:06:20.079051,78.8,3.28,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+126,Medical ICU (MICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,4,0,2026-08-21T05:43:25.121301,2026-08-27T04:55:25.121301,143.2,5.97,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+127,Medical ICU (MICU),Emergency,Infection admission,Suspected sepsis,Critical,5,1,2026-09-26T09:06:09.338761,2026-09-30T18:30:09.338761,105.4,4.39,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+128,Medical ICU (MICU),Emergency,Neurological admission,Stroke observation,Guarded,4,0,2026-08-11T14:35:30.283874,2026-08-12T21:53:30.283874,31.3,1.3,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+129,Surgical ICU (SICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,5,0,2026-08-17T02:06:55.277793,2026-08-22T08:36:55.277793,126.5,5.27,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+130,Surgical ICU (SICU),Elective,General surgery,Postoperative recovery,Postoperative,3,0,2026-09-18T12:01:42.376041,2026-09-19T19:31:42.376041,31.5,1.31,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+131,Medical ICU (MICU),Emergency,Renal admission,Acute kidney injury,Guarded,4,0,2026-09-20T00:23:54.326497,2026-09-23T13:59:54.326497,85.6,3.57,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+132,Cardiovascular ICU (CVICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,2,0,2026-09-14T02:40:00.460408,2026-09-15T08:16:00.460408,29.6,1.23,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+133,Cardiovascular ICU (CVICU),Elective,Elective angiography,"Stable, planned observation",Stable,2,0,2026-08-20T22:57:18.964253,2026-08-21T12:45:18.964253,13.8,0.58,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+134,Cardiovascular ICU (CVICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,3,0,2026-09-16T20:57:55.078414,2026-09-18T02:51:55.078414,29.9,1.25,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+135,Cardiovascular ICU (CVICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,4,0,2026-09-02T18:06:26.780715,2026-09-05T12:42:26.780715,66.6,2.77,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+136,Medical ICU (MICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,4,0,2026-08-29T20:00:32.348118,2026-08-31T22:36:32.348118,50.6,2.11,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+137,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,4,0,2026-09-11T20:34:45.728623,2026-09-14T15:10:45.728623,66.6,2.77,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+138,Medical ICU (MICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,5,0,2026-08-19T04:41:18.391856,2026-08-25T06:29:18.391856,145.8,6.08,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+139,Medical ICU (MICU),Emergency,Infection admission,Suspected sepsis,Critical,5,0,2026-08-21T09:15:37.266497,2026-08-30T14:57:37.266497,221.7,9.24,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+140,Medical ICU (MICU),Emergency,Neurological admission,Stroke observation,Guarded,4,0,2026-08-17T03:16:58.791960,2026-08-19T16:04:58.791960,60.8,2.53,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+141,Surgical ICU (SICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,3,0,2026-09-12T09:47:53.029883,2026-09-15T05:53:53.029883,68.1,2.84,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+142,Surgical ICU (SICU),Elective,General surgery,Postoperative recovery,Postoperative,2,0,2026-08-12T12:09:26.503973,2026-08-15T03:15:26.503973,63.1,2.63,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+143,Medical ICU (MICU),Emergency,Renal admission,Acute kidney injury,Guarded,4,0,2026-09-12T14:25:08.405509,2026-09-17T06:01:08.405509,111.6,4.65,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+144,Cardiovascular ICU (CVICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,2,0,2026-09-18T21:40:46.951168,2026-09-20T05:28:46.951168,31.8,1.32,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+145,Cardiovascular ICU (CVICU),Elective,Elective angiography,"Stable, planned observation",Stable,2,0,2026-08-11T19:13:05.380174,2026-08-12T20:55:05.380174,25.7,1.07,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+146,Cardiovascular ICU (CVICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,2,0,2026-09-02T14:42:09.192665,2026-09-03T17:48:09.192665,27.1,1.13,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+147,Cardiovascular ICU (CVICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,3,0,2026-09-07T13:01:03.061734,2026-09-10T17:31:03.061734,76.5,3.19,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+148,Cardiovascular ICU (CVICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,4,0,2026-08-29T06:11:59.611376,2026-08-31T01:17:59.611376,43.1,1.8,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+149,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,2,1,2026-09-20T14:24:43.741723,2026-09-23T13:18:43.741723,70.9,2.95,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+150,Medical ICU (MICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,4,1,2026-09-17T15:35:56.064426,2026-09-24T08:41:56.064426,161.1,6.71,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+151,Medical ICU (MICU),Emergency,Infection admission,Suspected sepsis,Critical,4,0,2026-08-08T05:49:55.873546,2026-08-14T09:13:55.873546,147.4,6.14,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+152,Medical ICU (MICU),Emergency,Neurological admission,Stroke observation,Guarded,3,0,2026-09-15T13:58:15.440079,2026-09-16T19:10:15.440079,29.2,1.22,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+153,Surgical ICU (SICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,4,0,2026-08-18T16:17:39.787888,2026-08-21T11:35:39.787888,67.3,2.8,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+154,Surgical ICU (SICU),Elective,General surgery,Postoperative recovery,Postoperative,2,0,2026-09-05T21:28:59.797715,2026-09-07T09:22:59.797715,35.9,1.5,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+155,Medical ICU (MICU),Emergency,Renal admission,Acute kidney injury,Guarded,3,0,2026-09-06T19:43:15.753249,2026-09-09T18:55:15.753249,71.2,2.97,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+156,Cardiovascular ICU (CVICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,2,0,2026-08-10T11:08:44.381833,2026-08-12T01:38:44.381833,38.5,1.6,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+157,Cardiovascular ICU (CVICU),Elective,Elective angiography,"Stable, planned observation",Stable,2,0,2026-08-18T07:45:46.816716,2026-08-19T03:33:46.816716,19.8,0.83,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+158,Cardiovascular ICU (CVICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,3,0,2026-08-05T11:39:05.991174,2026-08-07T06:33:05.991174,42.9,1.79,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+159,Cardiovascular ICU (CVICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,4,0,2026-09-16T06:57:33.254300,2026-09-18T14:27:33.254300,55.5,2.31,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+160,Medical ICU (MICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,4,0,2026-08-08T00:41:12.564404,2026-08-09T08:59:12.564404,32.3,1.35,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+161,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,2,0,2026-09-18T13:17:01.044636,2026-09-21T07:53:01.044636,66.6,2.77,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+162,Medical ICU (MICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,5,0,2026-08-28T16:10:37.770192,2026-09-04T03:22:37.770192,155.2,6.47,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+163,Medical ICU (MICU),Emergency,Infection admission,Suspected sepsis,Critical,5,0,2026-08-30T12:39:39.772674,2026-09-05T03:21:39.772674,134.7,5.61,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+164,Pediatric ICU (Pedia ICU),Emergency,Neurological admission,Stroke observation,Guarded,4,0,2026-09-05T13:11:56.750367,2026-09-08T02:53:56.750367,61.7,2.57,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+165,Surgical ICU (SICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,5,0,2026-09-19T02:20:31.414087,2026-09-20T08:20:31.414087,30.0,1.25,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+166,Surgical ICU (SICU),Elective,General surgery,Postoperative recovery,Postoperative,3,0,2026-09-03T22:44:44.802398,2026-09-05T06:56:44.802398,32.2,1.34,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+167,Medical ICU (MICU),Emergency,Renal admission,Acute kidney injury,Guarded,3,0,2026-08-28T18:42:04.149188,2026-08-30T12:42:04.149188,42.0,1.75,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+168,Pediatric ICU (Pedia ICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,3,0,2026-09-26T20:40:38.389771,2026-09-27T12:40:38.389771,16.0,0.67,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+169,Cardiovascular ICU (CVICU),Elective,Elective angiography,"Stable, planned observation",Stable,2,0,2026-08-20T18:37:54.304072,2026-08-21T08:01:54.304072,13.4,0.56,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+170,Cardiovascular ICU (CVICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,3,0,2026-08-18T03:30:17.688622,2026-08-18T19:30:17.688622,16.0,0.67,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+171,Cardiovascular ICU (CVICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,3,0,2026-08-27T20:45:22.579353,2026-08-30T16:15:22.579353,67.5,2.81,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+172,Medical ICU (MICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,4,0,2026-09-20T18:52:29.343621,2026-09-23T14:10:29.343621,67.3,2.8,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+173,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,2,0,2026-09-01T23:37:51.715560,2026-09-03T21:37:51.715560,46.0,1.92,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+174,Medical ICU (MICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,5,0,2026-09-14T15:59:12.301748,2026-09-21T06:35:12.301748,158.6,6.61,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+175,Medical ICU (MICU),Emergency,Infection admission,Suspected sepsis,Critical,4,0,2026-08-26T21:21:45.119165,2026-09-01T11:15:45.119165,133.9,5.58,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+176,Medical ICU (MICU),Emergency,Neurological admission,Stroke observation,Guarded,3,0,2026-09-11T17:41:45.438505,2026-09-13T15:35:45.438505,45.9,1.91,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+177,Surgical ICU (SICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,3,0,2026-09-02T13:09:07.101631,2026-09-09T16:51:07.101631,171.7,7.15,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+178,Surgical ICU (SICU),Elective,General surgery,Postoperative recovery,Postoperative,3,0,2026-09-25T13:53:06.141491,2026-09-28T16:11:06.141491,74.3,3.1,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+179,Medical ICU (MICU),Emergency,Renal admission,Acute kidney injury,Guarded,3,0,2026-08-30T09:43:32.543724,2026-09-02T04:01:32.543724,66.3,2.76,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+180,Cardiovascular ICU (CVICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,3,0,2026-09-27T12:20:32.948321,2026-09-28T11:38:32.948321,23.3,0.97,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+181,Cardiovascular ICU (CVICU),Elective,Elective angiography,"Stable, planned observation",Stable,1,0,2026-08-23T17:01:13.506766,2026-08-24T14:37:13.506766,21.6,0.9,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+182,Cardiovascular ICU (CVICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,2,0,2026-08-17T10:44:46.910223,2026-08-18T08:50:46.910223,22.1,0.92,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+183,Cardiovascular ICU (CVICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,4,0,2026-08-21T03:49:31.225296,2026-08-24T22:01:31.225296,90.2,3.76,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+184,Cardiovascular ICU (CVICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,4,0,2026-09-20T19:21:53.397289,2026-09-22T08:45:53.397289,37.4,1.56,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+185,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,3,1,2026-09-02T12:41:03.782037,2026-09-04T11:59:03.782037,47.3,1.97,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+186,Medical ICU (MICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,4,0,2026-08-15T06:19:39.942598,2026-08-20T03:31:39.942598,117.2,4.88,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+187,Medical ICU (MICU),Emergency,Infection admission,Suspected sepsis,Critical,5,1,2026-09-13T18:35:13.963889,2026-09-19T23:41:13.963889,149.1,6.21,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+188,Medical ICU (MICU),Emergency,Neurological admission,Stroke observation,Guarded,3,0,2026-08-30T05:27:36.394067,2026-08-31T05:27:36.394067,24.0,1.0,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+189,Cardiovascular ICU (CVICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,3,0,2026-09-21T07:51:59.485234,2026-09-23T12:45:59.485234,52.9,2.2,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+190,Surgical ICU (SICU),Elective,General surgery,Postoperative recovery,Postoperative,2,0,2026-08-25T05:58:12.243522,2026-08-27T07:04:12.243522,49.1,2.05,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+191,Medical ICU (MICU),Emergency,Renal admission,Acute kidney injury,Guarded,3,0,2026-08-05T16:45:34.371148,2026-08-08T20:27:34.371148,75.7,3.15,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+192,Cardiovascular ICU (CVICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,3,0,2026-09-08T05:46:16.729000,2026-09-09T10:10:16.729000,28.4,1.18,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+193,Cardiovascular ICU (CVICU),Elective,Elective angiography,"Stable, planned observation",Stable,2,0,2026-09-25T23:47:43.546818,2026-09-26T11:47:43.546818,12.0,0.5,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+194,Cardiovascular ICU (CVICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,2,0,2026-09-06T08:26:35.686478,2026-09-07T00:26:35.686478,16.0,0.67,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+195,Cardiovascular ICU (CVICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,4,0,2026-09-28T12:23:46.651699,2026-10-02T00:41:46.651699,84.3,3.51,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+196,Medical ICU (MICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,4,0,2026-08-11T00:54:38.525115,2026-08-12T08:42:38.525115,31.8,1.32,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+197,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,2,1,2026-09-16T18:36:03.064418,2026-09-19T05:48:03.064418,59.2,2.47,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+198,Pediatric ICU (Pedia ICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,4,1,2026-08-05T22:33:20.487326,2026-08-14T01:27:20.487326,194.9,8.12,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+199,Medical ICU (MICU),Emergency,Infection admission,Suspected sepsis,Critical,4,0,2026-09-04T08:25:11.938486,2026-09-10T13:31:11.938486,149.1,6.21,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+200,Medical ICU (MICU),Emergency,Neurological admission,Stroke observation,Guarded,3,0,2026-09-22T18:28:18.999770,2026-09-26T04:34:18.999770,82.1,3.42,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+201,Surgical ICU (SICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,4,0,2026-09-09T20:39:18.863923,2026-09-14T20:39:18.863923,120.0,5.0,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+202,Surgical ICU (SICU),Elective,General surgery,Postoperative recovery,Postoperative,3,0,2026-09-07T14:30:51.059894,2026-09-10T04:42:51.059894,62.2,2.59,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+203,Medical ICU (MICU),Emergency,Renal admission,Acute kidney injury,Guarded,4,0,2026-08-27T23:34:12.495846,2026-08-29T23:46:12.495846,48.2,2.01,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+204,Cardiovascular ICU (CVICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,2,0,2026-08-15T04:05:16.737715,2026-08-18T04:05:16.737715,72.0,3.0,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+205,Cardiovascular ICU (CVICU),Elective,Elective angiography,"Stable, planned observation",Stable,2,0,2026-09-28T05:46:07.899880,2026-09-28T20:10:07.899880,14.4,0.6,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+206,Cardiovascular ICU (CVICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,3,0,2026-08-01T19:20:13.747438,2026-08-03T23:32:13.747438,52.2,2.18,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+207,Cardiovascular ICU (CVICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,3,0,2026-09-23T10:51:49.446742,2026-09-26T13:45:49.446742,74.9,3.12,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+208,Medical ICU (MICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,3,0,2026-09-05T17:53:27.590748,2026-09-06T11:53:27.590748,18.0,0.75,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+209,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,4,1,2026-08-15T22:52:39.072220,2026-08-19T09:52:39.072220,83.0,3.46,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+210,Medical ICU (MICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,4,0,2026-09-23T00:45:54.668528,2026-09-25T10:03:54.668528,57.3,2.39,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+211,Medical ICU (MICU),Emergency,Infection admission,Suspected sepsis,Critical,5,0,2026-08-03T06:42:37.237478,2026-08-09T00:30:37.237478,137.8,5.74,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+212,Medical ICU (MICU),Emergency,Neurological admission,Stroke observation,Guarded,4,0,2026-09-13T22:28:23.559289,2026-09-16T20:16:23.559289,69.8,2.91,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+213,Surgical ICU (SICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,5,0,2026-09-21T11:02:41.407401,2026-09-24T17:38:41.407401,78.6,3.27,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+214,Surgical ICU (SICU),Elective,General surgery,Postoperative recovery,Postoperative,2,0,2026-08-16T07:45:29.226199,2026-08-18T14:33:29.226199,54.8,2.28,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+215,Medical ICU (MICU),Emergency,Renal admission,Acute kidney injury,Guarded,4,0,2026-09-26T18:20:15.743881,2026-09-29T11:56:15.743881,65.6,2.73,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+216,Cardiovascular ICU (CVICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,3,0,2026-09-26T12:03:02.196059,2026-09-29T02:51:02.196059,62.8,2.62,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+217,Surgical ICU (SICU),Elective,Elective angiography,"Stable, planned observation",Stable,2,0,2026-09-26T18:10:39.526392,2026-09-27T14:46:39.526392,20.6,0.86,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+218,Cardiovascular ICU (CVICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,2,0,2026-08-16T18:14:31.234896,2026-08-17T13:50:31.234896,19.6,0.82,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+219,Cardiovascular ICU (CVICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,4,0,2026-09-04T10:23:02.861927,2026-09-09T04:53:02.861927,114.5,4.77,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+220,Surgical ICU (SICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,4,0,2026-08-02T19:02:04.234218,2026-08-03T13:02:04.234218,18.0,0.75,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+221,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,4,1,2026-09-05T22:06:54.267126,2026-09-08T08:24:54.267126,58.3,2.43,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+222,Medical ICU (MICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,5,0,2026-08-08T03:20:46.721104,2026-08-11T21:08:46.721104,89.8,3.74,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+223,Medical ICU (MICU),Emergency,Infection admission,Suspected sepsis,Critical,5,0,2026-08-08T02:34:07.222855,2026-08-14T20:46:07.222855,162.2,6.76,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+224,Medical ICU (MICU),Emergency,Neurological admission,Stroke observation,Guarded,4,0,2026-09-09T10:40:50.543005,2026-09-13T02:16:50.543005,87.6,3.65,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+225,Surgical ICU (SICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,5,0,2026-08-25T18:46:38.837210,2026-08-30T06:52:38.837210,108.1,4.5,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+226,Surgical ICU (SICU),Elective,General surgery,Postoperative recovery,Postoperative,2,0,2026-09-18T23:10:13.139813,2026-09-20T10:46:13.139813,35.6,1.48,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+227,Medical ICU (MICU),Emergency,Renal admission,Acute kidney injury,Guarded,4,0,2026-08-03T05:48:10.085749,2026-08-05T18:42:10.085749,60.9,2.54,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+228,Cardiovascular ICU (CVICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,3,0,2026-08-07T03:05:47.308015,2026-08-09T03:17:47.308015,48.2,2.01,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+229,Cardiovascular ICU (CVICU),Elective,Elective angiography,"Stable, planned observation",Stable,2,0,2026-08-04T20:46:12.449400,2026-08-05T13:10:12.449400,16.4,0.68,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+230,Cardiovascular ICU (CVICU),Elective,Elective angioplasty,Stable after procedure,Postoperative,3,0,2026-08-06T16:20:34.056040,2026-08-08T20:02:34.056040,51.7,2.15,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+231,Cardiovascular ICU (CVICU),Elective,Cardiac surgery,Postoperative monitoring,Postoperative,3,0,2026-08-04T06:48:35.693741,2026-08-05T20:54:35.693741,38.1,1.59,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+232,Medical ICU (MICU),Emergency,Emergency cardiac admission,Acute chest pain under evaluation,Under evaluation,3,0,2026-08-05T08:03:15.170235,2026-08-09T02:39:15.170235,90.6,3.77,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+233,Medical ICU (MICU),Emergency,Respiratory admission,Pneumonia requiring monitoring,Guarded,2,0,2026-09-17T18:16:27.024850,2026-09-20T06:10:27.024850,59.9,2.5,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+234,Medical ICU (MICU),Emergency,Respiratory admission,Severe respiratory distress,Critical,4,1,2026-09-27T17:38:21.784513,2026-10-07T10:44:21.784513,233.1,9.71,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+235,Medical ICU (MICU),Emergency,Infection admission,Suspected sepsis,Critical,5,0,2026-08-07T17:53:48.793363,2026-08-15T00:23:48.793363,174.5,7.27,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+236,Medical ICU (MICU),Emergency,Neurological admission,Stroke observation,Guarded,3,0,2026-09-04T16:23:38.727134,2026-09-06T15:59:38.727134,47.6,1.98,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+237,Cardiovascular ICU (CVICU),Trauma,Trauma admission,Post-trauma monitoring,Postoperative,3,0,2026-08-08T17:27:43.060312,2026-08-11T20:45:43.060312,75.3,3.14,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+238,Pediatric ICU (Pedia ICU),Elective,General surgery,Postoperative recovery,Postoperative,3,0,2026-08-31T06:31:59.306350,2026-09-02T10:43:59.306350,52.2,2.18,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+239,Surgical ICU (SICU),Emergency,Renal admission,Acute kidney injury,Guarded,3,0,2026-09-12T18:08:24.705705,2026-09-16T22:56:24.705705,100.8,4.2,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL
+240,Cardiovascular ICU (CVICU),Emergency,Cardiac admission,Arrhythmia monitoring,Guarded,2,0,2026-08-04T21:09:20.053772,2026-08-05T22:03:20.053772,24.9,1.04,SYNTHETIC_DEVELOPMENT_ONLY_NOT_CLINICAL

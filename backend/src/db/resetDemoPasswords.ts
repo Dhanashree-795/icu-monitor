@@ -3,6 +3,10 @@ import { pool, checkDbConnection, query } from "./index";
 import { config } from "../config/env";
 
 const TARGET_DEMO_ACCOUNTS = [
+  { email: "ananya.iyer@admin.icu.in", legacyUsername: "admin", role: "ADMIN" },
+  { email: "rajesh.sharma@doctor.icu.in", legacyUsername: "doctor", role: "DOCTOR" },
+  { email: "lakshmi.devi@nurse.icu.in", legacyUsername: "nurse", role: "NURSE" },
+  { email: "suresh.kumar@housekeeping.icu.in", legacyUsername: "housekeeping", role: "HOUSEKEEPING" },
   { email: "admin@admin.icu.in", legacyUsername: "admin", role: "ADMIN" },
   { email: "doctor@doctor.icu.in", legacyUsername: "doctor", role: "DOCTOR" },
   { email: "nurse@nurse.icu.in", legacyUsername: "nurse", role: "NURSE" },

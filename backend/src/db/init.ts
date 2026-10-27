@@ -57,6 +57,50 @@ export async function initializeDatabase(): Promise<void> {
       updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
     );
 
+    -- 7b. Migration: Add staff profile fields to users table (phone, assigned_unit_id, department)
+    ALTER TABLE users ADD COLUMN IF NOT EXISTS phone VARCHAR(30);
+    ALTER TABLE users ADD COLUMN IF NOT EXISTS assigned_unit_id INTEGER REFERENCES icu_units(id) ON DELETE SET NULL;
+    ALTER TABLE users ADD COLUMN IF NOT EXISTS department VARCHAR(100);
+
+    -- 7c. Migration: Safely backfill default profile info and intended roster
+    UPDATE users SET 
+      username = 'Dr. Rajesh Sharma',
+      email = 'rajesh.sharma@doctor.icu.in',
+      phone = '+91 98765 43210', 
+      department = 'Critical Care Medicine'
+    WHERE email IN ('doctor@doctor.icu.in', 'rajesh.sharma@doctor.icu.in') OR (id = 2 AND role = 'DOCTOR');
+
+    UPDATE users SET 
+      username = 'Lakshmi Devi',
+      email = 'lakshmi.devi@nurse.icu.in',
+      phone = '+91 98765 43211', 
+      department = 'Intensive Care Nursing',
+      assigned_unit_id = (SELECT id FROM icu_units WHERE name ILIKE '%Medical ICU%' LIMIT 1)
+    WHERE email IN ('nurse@nurse.icu.in', 'lakshmi.devi@nurse.icu.in') OR (id = 3 AND role = 'NURSE');
+
+    UPDATE users SET 
+      username = 'Suresh Kumar',
+      email = 'suresh.kumar@housekeeping.icu.in',
+      phone = '+91 98765 43212', 
+      department = 'Environmental Services & Decontamination'
+    WHERE email IN ('housekeeping@housekeeping.icu.in', 'suresh.kumar@housekeeping.icu.in') OR (id = 4 AND role = 'HOUSEKEEPING');
+
+    UPDATE users SET 
+      username = 'Ananya Iyer',
+      email = 'ananya.iyer@admin.icu.in',
+      phone = '+91 98765 43213', 
+      department = 'Hospital Administration & Operations'
+    WHERE email IN ('admin@admin.icu.in', 'ananya.iyer@admin.icu.in') OR (id = 1 AND role = 'ADMIN');
+
+    -- 7d. Correct any cleaning tasks assigned to non-housekeeping accounts
+    UPDATE cleaning_tasks
+    SET assigned_user_id = NULL, status = 'PENDING', start_time = NULL
+    WHERE id IN (1, 3) AND status != 'COMPLETED';
+
+    UPDATE cleaning_tasks
+    SET assigned_user_id = NULL
+    WHERE assigned_user_id IN (SELECT id FROM users WHERE role != 'HOUSEKEEPING');
+
     -- 8. Create beds table
     CREATE TABLE IF NOT EXISTS beds (
       id SERIAL PRIMARY KEY,
@@ -81,10 +125,29 @@ export async function initializeDatabase(): Promise<void> {
       status VARCHAR(20) NOT NULL DEFAULT 'ADMITTED'
         CHECK (status IN ('ADMITTED', 'DISCHARGED')),
       admitting_doctor_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
+      condition VARCHAR(255) DEFAULT 'Stable under observation',
       notes TEXT,
       created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
       updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
     );
+
+    -- 9b. Migration: Ensure condition, patient_name, and procedure_type columns exist in admissions table
+    ALTER TABLE admissions ADD COLUMN IF NOT EXISTS condition VARCHAR(255) DEFAULT 'Stable under observation';
+    ALTER TABLE admissions ADD COLUMN IF NOT EXISTS patient_name VARCHAR(150);
+    ALTER TABLE admissions ADD COLUMN IF NOT EXISTS procedure_type VARCHAR(100);
+
+    -- 9c. Migration: Ensure experimental LOS prediction columns exist in admissions table
+    ALTER TABLE admissions ADD COLUMN IF NOT EXISTS predicted_los_days NUMERIC(5,2) DEFAULT NULL;
+    ALTER TABLE admissions ADD COLUMN IF NOT EXISTS prediction_status VARCHAR(50) DEFAULT NULL;
+    ALTER TABLE admissions ADD COLUMN IF NOT EXISTS prediction_reason TEXT DEFAULT NULL;
+    ALTER TABLE admissions ADD COLUMN IF NOT EXISTS predicted_free_time TIMESTAMPTZ DEFAULT NULL;
+    ALTER TABLE admissions ADD COLUMN IF NOT EXISTS prediction_updated_at TIMESTAMPTZ DEFAULT NULL;
+    ALTER TABLE admissions ADD COLUMN IF NOT EXISTS prediction_inputs JSONB DEFAULT NULL;
+
+    -- 9d. Migration: Ensure diagnosis, admission_type, and complications columns exist in admissions table
+    ALTER TABLE admissions ADD COLUMN IF NOT EXISTS diagnosis VARCHAR(255);
+    ALTER TABLE admissions ADD COLUMN IF NOT EXISTS admission_type VARCHAR(50);
+    ALTER TABLE admissions ADD COLUMN IF NOT EXISTS complications VARCHAR(50);
 
     -- 10. Create cleaning_tasks table
     CREATE TABLE IF NOT EXISTS cleaning_tasks (

@@ -11,6 +11,9 @@ export interface AuthUser {
   role: UserRole;
   username?: string;
   active?: boolean;
+  assigned_unit_id?: number | null;
+  assigned_unit_name?: string | null;
+  department?: string | null;
 }
 
 declare global {
@@ -31,6 +34,9 @@ export function generateToken(user: AuthUser): string {
       email: user.email,
       username: user.username || user.email.split("@")[0],
       role: user.role,
+      assigned_unit_id: user.assigned_unit_id ?? null,
+      assigned_unit_name: user.assigned_unit_name ?? null,
+      department: user.department ?? null,
     },
     config.jwt.secret,
     { expiresIn: "8h" }
@@ -138,6 +144,11 @@ export function csrfProtection(req: Request, res: Response, next: NextFunction):
   // and are immune to CSRF attacks per OWASP guidelines.
   const authHeader = req.headers.authorization;
   if (authHeader && typeof authHeader === "string" && authHeader.startsWith("Bearer ")) {
+    return next();
+  }
+
+  // If no ambient session cookie is present, CSRF is not applicable; let authentication middleware enforce 401
+  if (!req.cookies?.[AUTH_COOKIE_NAME]) {
     return next();
   }
 

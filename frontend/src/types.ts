@@ -13,6 +13,9 @@ export interface AuthUser {
   email: string;
   role: UserRole;
   username?: string;
+  assigned_unit_id?: number | null;
+  assigned_unit_name?: string | null;
+  department?: string | null;
 }
 
 export interface IcuUnit {
@@ -25,6 +28,20 @@ export interface IcuUnit {
   availableBeds?: number;
 }
 
+export interface StaffUser {
+  id: number;
+  email: string;
+  username?: string;
+  role: UserRole;
+  active?: boolean;
+  phone?: string | null;
+  department?: string | null;
+  assigned_unit_id?: number | null;
+  assigned_unit_name?: string | null;
+  created_at?: string;
+  updated_at?: string;
+}
+
 export interface Bed {
   id: number;
   bed_number: string;
@@ -33,16 +50,33 @@ export interface Bed {
   status: BedStatus;
   is_isolation: boolean;
   current_patient_ref: string | null;
+  patient_name?: string | null;
+  patient_procedure_type?: string | null;
   created_at: string;
   updated_at: string;
   active_admission_id?: number | null;
   admission_time?: string | null;
   expected_discharge_time?: string | null;
   admission_notes?: string | null;
+  assigned_doctor_email?: string | null;
+  assigned_doctor_name?: string | null;
   active_cleaning_task_id?: number | null;
   cleaning_task_type?: CleaningTaskType | null;
   cleaning_task_status?: CleaningTaskStatus | null;
   cleaning_start_time?: string | null;
+  cleaning_created_at?: string | null;
+  cleaning_notes?: string | null;
+  assigned_cleaner_id?: number | null;
+  assigned_cleaner_email?: string | null;
+  assigned_cleaner_name?: string | null;
+  patient_condition?: string | null;
+  assigned_doctor_id?: number | null;
+  predicted_los_days?: number | null;
+  prediction_status?: string | null;
+  prediction_reason?: string | null;
+  predicted_free_time?: string | null;
+  prediction_updated_at?: string | null;
+  prediction_inputs?: Record<string, string> | null;
 }
 
 export interface CleaningTask {
@@ -55,6 +89,7 @@ export interface CleaningTask {
   status: CleaningTaskStatus;
   assigned_user_id: number | null;
   assigned_user_email: string | null;
+  assigned_user_name?: string | null;
   start_time: string | null;
   completion_time: string | null;
   notes: string | null;
@@ -67,6 +102,8 @@ export interface CleaningTask {
 export interface Admission {
   id: number;
   patient_ref: string;
+  patient_name?: string | null;
+  procedure_type?: string | null;
   bed_id: number;
   bed_number: string;
   is_isolation: boolean;
@@ -75,8 +112,18 @@ export interface Admission {
   expected_discharge_time: string | null;
   actual_discharge_time: string | null;
   status: AdmissionStatus;
+  condition?: string | null;
+  admission_reason?: string | null;
   notes: string | null;
+  admitting_doctor_id?: number | null;
   admitting_doctor_email: string | null;
+  admitting_doctor_name?: string | null;
+  predicted_los_days?: number | null;
+  prediction_status?: string | null;
+  prediction_reason?: string | null;
+  predicted_free_time?: string | null;
+  prediction_updated_at?: string | null;
+  prediction_inputs?: Record<string, string> | null;
 }
 
 export interface DashboardStats {
@@ -97,6 +144,7 @@ export interface DashboardStats {
     totalBeds: number;
     occupiedBeds: number;
     availableBeds: number;
+    maintenanceBeds?: number;
   }>;
   timestamp: string;
 }
@@ -131,6 +179,10 @@ export interface BedReadinessItem {
   taskType?: CleaningTaskType;
   assignedUserEmail?: string | null;
   isOverdue?: boolean;
+  predictedTurnoverMinutesRemaining?: number;
+  cleaningPredictedCompletion?: string | null;
+  estimatedDischargeMinutesRemaining?: number;
+  estimatedDischargeTime?: string | null;
 }
 
 export interface ReadinessHorizon {
@@ -205,5 +257,83 @@ export interface ReadinessConfig {
   turnoverTargetMinutesStandard: number;
   turnoverTargetMinutesDeep: number;
   simulatedSurgeDemand: number;
+}
+
+export interface LosPredictionRequest {
+  patient_id?: number;
+  patient_ref?: string;
+  procedure_type: string;
+  condition: string;
+  admission_type: string;
+  complications: string;
+  icu_unit: string;
+  age_group: string;
+}
+
+export interface LosPredictionResponse {
+  success: boolean;
+  predicted_los_days: number;
+  model_status: string;
+  clinical_use: boolean;
+  disclaimer: string;
+  is_experimental: boolean;
+  warning?: string;
+  patient_id?: number;
+  patient_ref?: string;
+  predicted_free_time?: string | null;
+  prediction_status?: string | null;
+  prediction_reason?: string | null;
+  admission_id?: number | null;
+  inputs?: LosPredictionRequest | Record<string, string>;
+}
+
+export interface MlHealthResponse {
+  status: string;
+  service: string;
+  model_status: string;
+  model_loaded?: boolean;
+  data_type: string;
+  disclaimer: string;
+  is_experimental: boolean;
+}
+
+export interface AdmissionResponse {
+  success: boolean;
+  message: string;
+  status: string;
+  admissionId?: number;
+  patientRef: string;
+  patientName?: string | null;
+  bedId?: number;
+  bedNumber?: string;
+  icuUnit?: string;
+  admittingDoctorId?: number;
+  assignedDoctorName?: string;
+  admissionTime?: string;
+  condition?: string;
+  diagnosis?: string;
+  admissionType?: string;
+  complications?: string;
+  predictedLosDays?: number | null;
+  predictionStatus?: string | null;
+  predictionReason?: string | null;
+  predictedFreeTime?: string | null;
+}
+
+export interface AdminAdmitPayload {
+  patientName: string;
+  patientRef?: string;
+  bedId: number;
+  doctorId: number;
+  icuUnit?: string;
+  procedureType?: string;
+  condition?: string;
+  diagnosis?: string;
+  admissionReason?: string;
+  admissionType?: string;
+  complications?: string;
+  ageGroup?: string;
+  notes?: string;
+  expectedDischargeHours?: number;
 }
 

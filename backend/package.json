@@ -12,7 +12,9 @@
     "db:setup": "tsx src/db/setup.ts",
     "db:seed-beds": "tsx src/db/seedBeds.ts",
     "db:reset-demo-passwords": "tsx src/db/resetDemoPasswords.ts",
-    "test:verify": "tsx src/testVerification.ts"
+    "test:verify": "tsx src/testVerification.ts",
+    "test:ml": "tsx src/testLosPrediction.ts",
+    "test": "tsx src/testLosPrediction.ts"
   },
   "keywords": [],
   "author": "",

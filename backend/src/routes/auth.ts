@@ -21,6 +21,9 @@ interface UserRow {
   password_hash: string;
   role: UserRole;
   active: boolean;
+  assigned_unit_id: number | null;
+  assigned_unit_name: string | null;
+  department: string | null;
 }
 
 const PORTAL_EMAIL_RULES: Record<string, { pattern: RegExp; example: string; label: string }> = {
@@ -99,7 +102,10 @@ router.post("/login", async (req: Request, res: Response): Promise<void> => {
   try {
     // 3. Fetch user from PostgreSQL by email or legacy username
     const result = await query<UserRow>(
-      "SELECT id, email, username, password_hash, role, active FROM users WHERE LOWER(email) = LOWER($1) OR LOWER(username) = LOWER($1)",
+      `SELECT u.id, u.email, u.username, u.password_hash, u.role, u.active, u.assigned_unit_id, unit.name AS assigned_unit_name, u.department
+       FROM users u
+       LEFT JOIN icu_units unit ON unit.id = u.assigned_unit_id
+       WHERE LOWER(u.email) = LOWER($1) OR LOWER(u.username) = LOWER($1)`,
       [identifier]
     );
 
@@ -152,6 +158,9 @@ router.post("/login", async (req: Request, res: Response): Promise<void> => {
       email: resolvedEmail,
       username: user.username || resolvedEmail.split("@")[0] || "",
       role: user.role,
+      assigned_unit_id: user.assigned_unit_id,
+      assigned_unit_name: user.assigned_unit_name,
+      department: user.department,
     });
 
     const csrfToken = generateCsrfToken();
@@ -169,6 +178,9 @@ router.post("/login", async (req: Request, res: Response): Promise<void> => {
         email: resolvedEmail,
         username: user.username || resolvedEmail.split("@")[0],
         role: user.role,
+        assigned_unit_id: user.assigned_unit_id,
+        assigned_unit_name: user.assigned_unit_name,
+        department: user.department,
       },
       csrfToken,
     });

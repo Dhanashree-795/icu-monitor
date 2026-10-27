@@ -12,15 +12,16 @@ import {
   Info,
   Check,
 } from "lucide-react";
-import type { Bed, IcuUnit, AuditLog, UserRole } from "../types";
+import type { Bed, IcuUnit, AuditLog, UserRole, AuthUser } from "../types";
 import { api } from "../api";
 
 interface BedManagementPageProps {
   userRole: UserRole;
+  currentUser?: AuthUser | null;
   refreshTrigger?: number;
 }
 
-export const BedManagementPage: React.FC<BedManagementPageProps> = ({ userRole, refreshTrigger }) => {
+export const BedManagementPage: React.FC<BedManagementPageProps> = ({ userRole, currentUser, refreshTrigger }) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [beds, setBeds] = useState<Bed[]>([]);
@@ -52,6 +53,11 @@ export const BedManagementPage: React.FC<BedManagementPageProps> = ({ userRole, 
   const [notesInput, setNotesInput] = useState<string>("");
   const [cleaningTypeInput, setCleaningTypeInput] = useState<"STANDARD" | "DEEP">("STANDARD");
   const [requiresCleaningInput, setRequiresCleaningInput] = useState<boolean>(true);
+  const [procedureTypeInput, setProcedureTypeInput] = useState<string>("");
+  const [conditionInput, setConditionInput] = useState<string>("stable");
+  const [admissionTypeInput, setAdmissionTypeInput] = useState<string>("planned");
+  const [complicationsInput, setComplicationsInput] = useState<string>("none");
+  const [ageGroupInput, setAgeGroupInput] = useState<string>("adult");
 
   async function loadBeds() {
     setIsLoading(true);
@@ -114,6 +120,11 @@ export const BedManagementPage: React.FC<BedManagementPageProps> = ({ userRole, 
       // Default to 48 hours ahead
       const nextDate = new Date(Date.now() + 48 * 3600 * 1000);
       setExpectedDischargeInput(nextDate.toISOString().slice(0, 16));
+      setProcedureTypeInput("");
+      setConditionInput("stable");
+      setAdmissionTypeInput("planned");
+      setComplicationsInput("none");
+      setAgeGroupInput("adult");
     } else if (action === "DISCHARGE") {
       setCleaningTypeInput(bed.is_isolation ? "DEEP" : "STANDARD");
     } else if (action === "RESERVE") {
@@ -140,12 +151,16 @@ export const BedManagementPage: React.FC<BedManagementPageProps> = ({ userRole, 
 
     try {
       if (activeModal === "ADMIT") {
-        const res = await api.admitPatient(
-          targetBed.id,
-          patientRefInput,
-          expectedDischargeInput ? new Date(expectedDischargeInput).toISOString() : undefined,
-          notesInput
-        );
+        const res = await api.admitPatient(targetBed.id, {
+          patientRef: patientRefInput.trim(),
+          expectedDischargeTime: expectedDischargeInput ? new Date(expectedDischargeInput).toISOString() : undefined,
+          notes: notesInput.trim() || undefined,
+          procedureType: procedureTypeInput.trim() || undefined,
+          condition: conditionInput || undefined,
+          admissionType: admissionTypeInput || undefined,
+          complications: complicationsInput || undefined,
+          ageGroup: ageGroupInput || undefined,
+        });
         setSuccessMessage(res.message);
       } else if (activeModal === "DISCHARGE") {
         const res = await api.dischargePatient(targetBed.id, cleaningTypeInput, notesInput);
@@ -181,6 +196,112 @@ export const BedManagementPage: React.FC<BedManagementPageProps> = ({ userRole, 
       const msg = err instanceof Error ? err.message : "Failed to release reservation";
       setError(msg);
     }
+  }
+
+  function renderPredictedFreeTime(bed: Bed) {
+    if (bed.status === "AVAILABLE") {
+      return (
+        <span style={{ color: "#10b981", fontWeight: 600, fontSize: "13px", display: "inline-flex", alignItems: "center", gap: "4px" }}>
+          <CheckCircle2 size={13} />
+          <span>Available Now</span>
+        </span>
+      );
+    }
+
+    if (bed.status === "CLEANING") {
+      return (
+        <div>
+          <span style={{ fontWeight: 600, color: "#8b60b5", fontSize: "13px" }}>
+            ~20 mins
+          </span>
+          <div style={{ fontSize: "10px", color: "#64748b" }}>
+            Turnover sanitization
+          </div>
+        </div>
+      );
+    }
+
+    if (bed.status === "OCCUPIED") {
+      const storedLos = bed.predicted_los_days;
+      const admTimeRaw = bed.admission_time;
+      const storedFreeTime = bed.predicted_free_time;
+
+      if (storedLos !== undefined && storedLos !== null && admTimeRaw) {
+        const admDate = new Date(admTimeRaw);
+        if (!isNaN(admDate.getTime())) {
+          const freeDate = storedFreeTime ? new Date(storedFreeTime) : new Date(admDate.getTime() + Number(storedLos) * 86400000);
+          if (!isNaN(freeDate.getTime())) {
+            return (
+              <div className="predicted-free-time-box">
+                <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+                  <Clock size={13} style={{ color: "#0d9488" }} />
+                  <span style={{ fontWeight: 600, color: "var(--navy-900, #0f172a)", fontSize: "12px" }}>
+                    {freeDate.toLocaleDateString([], { month: "short", day: "numeric" })},{" "}
+                    {freeDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                  </span>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "6px", marginTop: "2px" }}>
+                  <span
+                    className="estimated-badge"
+                    style={{
+                      fontSize: "10px",
+                      padding: "1px 6px",
+                      borderRadius: "4px",
+                      backgroundColor: "#ecfdf5",
+                      color: "#065f46",
+                      border: "1px solid #a7f3d0",
+                      fontWeight: 700,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.4px",
+                    }}
+                  >
+                    Estimated
+                  </span>
+                  <span style={{ fontSize: "11px", color: "#64748b" }}>
+                    ~{Number(storedLos).toFixed(1)}d LOS
+                  </span>
+                </div>
+              </div>
+            );
+          }
+        }
+      }
+
+      // Occupied bed without valid prediction or missing admission timestamp
+      const reason = bed.prediction_reason || (!admTimeRaw ? "Missing admission timestamp" : "Inputs insufficient");
+
+      return (
+        <div className="cant-predict-box">
+          <span
+            style={{
+              fontSize: "12px",
+              fontWeight: 600,
+              color: "#64748b",
+              backgroundColor: "#f1f5f9",
+              padding: "2px 8px",
+              borderRadius: "4px",
+              border: "1px solid #e2e8f0",
+              display: "inline-block",
+            }}
+          >
+            Can't predict
+          </span>
+          <div style={{ fontSize: "10px", color: "#94a3b8", marginTop: "2px" }}>
+            {reason}
+          </div>
+        </div>
+      );
+    }
+
+    if (bed.status === "RESERVED") {
+      return (
+        <span style={{ fontSize: "12px", color: "#64748b" }}>
+          Hold active
+        </span>
+      );
+    }
+
+    return <span className="muted-dash">—</span>;
   }
 
   return (
@@ -295,8 +416,10 @@ export const BedManagementPage: React.FC<BedManagementPageProps> = ({ userRole, 
                   <th>Unit</th>
                   <th>Status</th>
                   <th>Isolation</th>
-                  <th>Synthetic Patient Ref</th>
+                  <th>Patient Name</th>
+                  <th>Cleaner Name</th>
                   <th>Turnover / Active Details</th>
+                  <th>Predicted Free Time</th>
                   <th style={{ textAlign: "right" }}>Permitted Actions</th>
                 </tr>
               </thead>
@@ -333,8 +456,31 @@ export const BedManagementPage: React.FC<BedManagementPageProps> = ({ userRole, 
                         )}
                       </td>
                       <td>
-                        {bed.current_patient_ref ? (
-                          <span className="code-pill">{bed.current_patient_ref}</span>
+                        {bed.patient_name ? (
+                          <div>
+                            <div style={{ fontWeight: 600 }}>{bed.patient_name}</div>
+                            {bed.current_patient_ref && (
+                              <span className="code-pill" style={{ fontSize: "11px", marginTop: "2px", display: "inline-block" }}>
+                                {bed.current_patient_ref}
+                              </span>
+                            )}
+                          </div>
+                        ) : bed.current_patient_ref ? (
+                          <div>
+                            <div style={{ fontStyle: "italic", color: "#64748b", fontSize: "12px" }}>Name unavailable</div>
+                            <span className="code-pill" style={{ fontSize: "11px", marginTop: "2px", display: "inline-block" }}>
+                              {bed.current_patient_ref}
+                            </span>
+                          </div>
+                        ) : (
+                          <span className="muted-dash">—</span>
+                        )}
+                      </td>
+                      <td>
+                        {bed.assigned_cleaner_name ? (
+                          <div style={{ fontWeight: 600 }}>{bed.assigned_cleaner_name}</div>
+                        ) : isCleaning ? (
+                          <span style={{ color: "#8b60b5", fontSize: "12px", fontStyle: "italic" }}>Unassigned</span>
                         ) : (
                           <span className="muted-dash">—</span>
                         )}
@@ -356,6 +502,9 @@ export const BedManagementPage: React.FC<BedManagementPageProps> = ({ userRole, 
                           <span className="meta-text text-success">Clean & ready</span>
                         )}
                       </td>
+                      <td>
+                        {renderPredictedFreeTime(bed)}
+                      </td>
                       <td style={{ textAlign: "right" }}>
                         <div className="actions-cell">
                           {/* Role-based action buttons */}
@@ -370,18 +519,35 @@ export const BedManagementPage: React.FC<BedManagementPageProps> = ({ userRole, 
                             </button>
                           )}
 
-                          {userRole !== "HOUSEKEEPING" && isOccupied && (userRole === "DOCTOR" || userRole === "NURSE" || userRole === "ADMIN") && (
-                            <button
-                              type="button"
-                              className="btn-action btn-discharge"
-                              onClick={() => openActionModal("DISCHARGE", bed)}
-                              title="Discharge patient and queue cleaning"
-                            >
-                              <UserMinus size={14} /> Discharge
-                            </button>
+                          {userRole !== "HOUSEKEEPING" && isOccupied && (
+                            userRole === "DOCTOR" ? (
+                              bed.assigned_doctor_id === currentUser?.id ? (
+                                <button
+                                  type="button"
+                                  className="btn-action btn-discharge"
+                                  onClick={() => openActionModal("DISCHARGE", bed)}
+                                  title="Discharge patient and queue cleaning"
+                                >
+                                  <UserMinus size={14} /> Discharge
+                                </button>
+                              ) : (
+                                <span className="text-muted" style={{ fontSize: "11px", fontStyle: "italic" }}>
+                                  Protected Inpatient
+                                </span>
+                              )
+                            ) : (userRole === "NURSE" || userRole === "ADMIN") && (
+                              <button
+                                type="button"
+                                className="btn-action btn-discharge"
+                                onClick={() => openActionModal("DISCHARGE", bed)}
+                                title="Discharge patient and queue cleaning"
+                              >
+                                <UserMinus size={14} /> Discharge
+                              </button>
+                            )
                           )}
 
-                          {userRole !== "HOUSEKEEPING" && isAvailable && (
+                          {userRole !== "HOUSEKEEPING" && isAvailable && (userRole === "NURSE" || userRole === "ADMIN") && (
                             <button
                               type="button"
                               className="btn-action btn-secondary"
@@ -393,26 +559,32 @@ export const BedManagementPage: React.FC<BedManagementPageProps> = ({ userRole, 
                           )}
 
                           {userRole !== "HOUSEKEEPING" && isReserved && (
-                            <>
-                              {(userRole === "DOCTOR" || userRole === "ADMIN") && (
+                            userRole === "DOCTOR" ? (
+                              <span className="text-muted" style={{ fontSize: "11px", fontStyle: "italic" }}>
+                                Scheduled Hold
+                              </span>
+                            ) : (userRole === "NURSE" || userRole === "ADMIN") && (
+                              <>
+                                {userRole === "ADMIN" && (
+                                  <button
+                                    type="button"
+                                    className="btn-action btn-admit"
+                                    onClick={() => openActionModal("ADMIT", bed)}
+                                    title="Admit to reserved bed"
+                                  >
+                                    <UserPlus size={14} /> Admit
+                                  </button>
+                                )}
                                 <button
                                   type="button"
-                                  className="btn-action btn-admit"
-                                  onClick={() => openActionModal("ADMIT", bed)}
-                                  title="Admit to reserved bed"
+                                  className="btn-action btn-secondary"
+                                  onClick={() => handleQuickReleaseReservation(bed)}
+                                  title="Release reservation"
                                 >
-                                  <UserPlus size={14} /> Admit
+                                  Release
                                 </button>
-                              )}
-                              <button
-                                type="button"
-                                className="btn-action btn-secondary"
-                                onClick={() => handleQuickReleaseReservation(bed)}
-                                title="Release reservation"
-                              >
-                                Release
-                              </button>
-                            </>
+                              </>
+                            )
                           )}
 
                           {userRole !== "HOUSEKEEPING" && !isOccupied && !isMaintenance && (userRole === "NURSE" || userRole === "ADMIN") && (
@@ -495,8 +667,12 @@ export const BedManagementPage: React.FC<BedManagementPageProps> = ({ userRole, 
                     )}
                   </div>
                   <div>
-                    <span className="detail-label">Patient Ref:</span>
-                    <strong>{selectedBed.current_patient_ref || "None (Unassigned)"}</strong>
+                    <span className="detail-label">Patient Name:</span>
+                    <strong>{selectedBed.patient_name || (selectedBed.current_patient_ref ? "Name unavailable" : "None (Unassigned)")}</strong>
+                  </div>
+                  <div>
+                    <span className="detail-label">Patient ID:</span>
+                    <strong>{selectedBed.current_patient_ref || "—"}</strong>
                   </div>
                   <div>
                     <span className="detail-label">Last Updated:</span>
@@ -510,7 +686,10 @@ export const BedManagementPage: React.FC<BedManagementPageProps> = ({ userRole, 
                 <div className="detail-section highlight-box">
                   <h4>Active Patient Placement</h4>
                   <p>
-                    <strong>Synthetic ID:</strong> {selectedBed.current_patient_ref}
+                    <strong>Patient Name:</strong> {selectedBed.patient_name || "Name unavailable"}
+                  </p>
+                  <p>
+                    <strong>Patient ID:</strong> {selectedBed.current_patient_ref || "—"}
                   </p>
                   <p>
                     <strong>Admission Time:</strong>{" "}
@@ -522,11 +701,85 @@ export const BedManagementPage: React.FC<BedManagementPageProps> = ({ userRole, 
                       {new Date(selectedBed.expected_discharge_time).toLocaleString()}
                     </p>
                   )}
+                  {selectedBed.patient_procedure_type && (
+                    <p>
+                      <strong>Procedure Type:</strong> {selectedBed.patient_procedure_type}
+                    </p>
+                  )}
                   {selectedBed.admission_notes && (
                     <p>
                       <strong>Clinical Notes:</strong> {selectedBed.admission_notes}
                     </p>
                   )}
+                </div>
+              )}
+
+              {/* Experimental Length of Stay & Bed-Free Prediction Details */}
+              {selectedBed.status === "OCCUPIED" && (
+                <div
+                  className="detail-section highlight-box"
+                  style={{
+                    backgroundColor: "#f0fdf4",
+                    borderColor: "#bbf7d0",
+                    borderLeft: "4px solid #10b981",
+                  }}
+                >
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px" }}>
+                    <h4 style={{ margin: 0, color: "#166534" }}>Experimental Bed-Free Estimate</h4>
+                    <span
+                      style={{
+                        fontSize: "10px",
+                        fontWeight: 700,
+                        backgroundColor: "#dcfce7",
+                        color: "#15803d",
+                        padding: "2px 6px",
+                        borderRadius: "4px",
+                        border: "1px solid #86efac",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      {selectedBed.prediction_status || (selectedBed.predicted_los_days != null ? "PREDICTED" : "CANT_PREDICT")}
+                    </span>
+                  </div>
+
+                  {selectedBed.predicted_los_days != null && selectedBed.admission_time ? (
+                    <>
+                      <p style={{ margin: "4px 0", fontSize: "13px" }}>
+                        <strong>Predicted LOS:</strong>{" "}
+                        <span style={{ color: "#15803d", fontWeight: 700 }}>
+                          {Number(selectedBed.predicted_los_days).toFixed(1)} days
+                        </span>
+                      </p>
+                      <p style={{ margin: "4px 0", fontSize: "13px" }}>
+                        <strong>Estimated Free Time:</strong>{" "}
+                        <span>
+                          {selectedBed.predicted_free_time
+                            ? new Date(selectedBed.predicted_free_time).toLocaleString()
+                            : new Date(new Date(selectedBed.admission_time).getTime() + Number(selectedBed.predicted_los_days) * 86400000).toLocaleString()}
+                        </span>
+                      </p>
+                      {selectedBed.prediction_updated_at && (
+                        <p style={{ margin: "4px 0", fontSize: "11px", color: "#64748b" }}>
+                          <strong>Last Prediction Calculated:</strong>{" "}
+                          {new Date(selectedBed.prediction_updated_at).toLocaleString()}
+                        </p>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <p style={{ margin: "4px 0", fontSize: "13px", color: "#64748b" }}>
+                        <strong>Prediction Status:</strong> Can't predict
+                      </p>
+                      <p style={{ margin: "4px 0", fontSize: "12px", color: "#94a3b8" }}>
+                        <strong>Reason:</strong>{" "}
+                        {selectedBed.prediction_reason || (!selectedBed.admission_time ? "Missing admission timestamp" : "Inputs insufficient")}
+                      </p>
+                    </>
+                  )}
+
+                  <div style={{ marginTop: "10px", fontSize: "10px", color: "#64748b", fontStyle: "italic" }}>
+                    Experimental demonstration — trained on synthetic educational data; not clinically validated and must not guide clinical triage or bed decisions.
+                  </div>
                 </div>
               )}
 
@@ -539,6 +792,9 @@ export const BedManagementPage: React.FC<BedManagementPageProps> = ({ userRole, 
                   </p>
                   <p>
                     <strong>Turnover Status:</strong> {selectedBed.cleaning_task_status || "PENDING"}
+                  </p>
+                  <p>
+                    <strong>Assigned Housekeeper:</strong> {selectedBed.assigned_cleaner_name || selectedBed.assigned_cleaner_email || "Unassigned"}
                   </p>
                   {selectedBed.cleaning_start_time && (
                     <p>
@@ -625,6 +881,85 @@ export const BedManagementPage: React.FC<BedManagementPageProps> = ({ userRole, 
                     <span className="input-hint">
                       Never enter real names or dates of birth. Use synthetic references only.
                     </span>
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="procedureType">Procedure Type (Experimental LOS)</label>
+                    <select
+                      id="procedureType"
+                      value={procedureTypeInput}
+                      onChange={(e) => setProcedureTypeInput(e.target.value)}
+                    >
+                      <option value="">-- Select Procedure Type (Optional) --</option>
+                      <option value="angiography">Angiography</option>
+                      <option value="angioplasty">Angioplasty</option>
+                      <option value="arrhythmia">Arrhythmia Management</option>
+                      <option value="cardiac_surgery">Cardiac Surgery</option>
+                      <option value="general_surgery">General Surgery</option>
+                      <option value="kidney_injury">Acute Kidney Injury</option>
+                      <option value="observation">Clinical Observation</option>
+                      <option value="pneumonia">Pneumonia</option>
+                      <option value="respiratory_distress">Respiratory Distress</option>
+                      <option value="sepsis">Sepsis</option>
+                      <option value="stroke">Stroke</option>
+                      <option value="trauma">Trauma Care</option>
+                    </select>
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="condition">Condition Category</label>
+                    <select
+                      id="condition"
+                      value={conditionInput}
+                      onChange={(e) => setConditionInput(e.target.value)}
+                    >
+                      <option value="stable">Stable</option>
+                      <option value="improving">Improving</option>
+                      <option value="moderate">Moderate</option>
+                      <option value="critical">Critical</option>
+                      <option value="uncertain">Uncertain</option>
+                    </select>
+                  </div>
+
+                  <div className="form-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "10px" }}>
+                    <div className="form-group">
+                      <label htmlFor="admissionType">Admission Type</label>
+                      <select
+                        id="admissionType"
+                        value={admissionTypeInput}
+                        onChange={(e) => setAdmissionTypeInput(e.target.value)}
+                      >
+                        <option value="planned">Planned</option>
+                        <option value="urgent">Urgent</option>
+                        <option value="emergency">Emergency</option>
+                      </select>
+                    </div>
+
+                    <div className="form-group">
+                      <label htmlFor="complications">Complications</label>
+                      <select
+                        id="complications"
+                        value={complicationsInput}
+                        onChange={(e) => setComplicationsInput(e.target.value)}
+                      >
+                        <option value="none">None</option>
+                        <option value="present">Present</option>
+                        <option value="unknown">Unknown</option>
+                      </select>
+                    </div>
+
+                    <div className="form-group">
+                      <label htmlFor="ageGroup">Age Group</label>
+                      <select
+                        id="ageGroup"
+                        value={ageGroupInput}
+                        onChange={(e) => setAgeGroupInput(e.target.value)}
+                      >
+                        <option value="adult">Adult (18-64)</option>
+                        <option value="child">Child (&lt;18)</option>
+                        <option value="older_adult">Older Adult (65+)</option>
+                      </select>
+                    </div>
                   </div>
 
                   <div className="form-group">

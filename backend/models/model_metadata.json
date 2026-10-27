@@ -1,0 +1,63 @@
+{
+  "model_name": "ICU Length of Stay Random Forest Regressor",
+  "model_version": "1.0.0-synthetic-exp",
+  "is_experimental": true,
+  "trained_at": "2026-10-25T17:11:36.470875",
+  "disclaimer": "SYNTHETIC DEVELOPMENT DATASET ONLY. DO NOT USE FOR REAL CLINICAL CARE OR AUTOMATIC DISCHARGE ORDERS.",
+  "dataset_path": "backend/data/synthetic_icu_training_data.csv",
+  "sample_count_total": 240,
+  "sample_count_train": 192,
+  "sample_count_test": 48,
+  "target": "length_of_stay_hours",
+  "features": [
+    "icu_unit",
+    "admission_type",
+    "procedure_type",
+    "condition_category",
+    "patient_acuity_score",
+    "is_isolation"
+  ],
+  "evaluation_metrics": {
+    "baseline_median_mae_hours": 46.34,
+    "baseline_median_rmse_hours": 65.74,
+    "random_forest_mae_hours": 22.1,
+    "random_forest_rmse_hours": 33.4,
+    "random_forest_r2": 0.7221,
+    "mae_improvement_over_baseline_hours": 24.23
+  },
+  "top_feature_importances": [
+    {
+      "feature": "condition_category_Critical",
+      "importance": 0.6191
+    },
+    {
+      "feature": "patient_acuity_score",
+      "importance": 0.1052
+    },
+    {
+      "feature": "procedure_type_Trauma admission",
+      "importance": 0.0364
+    },
+    {
+      "feature": "is_isolation",
+      "importance": 0.0183
+    },
+    {
+      "feature": "admission_type_Trauma",
+      "importance": 0.0179
+    },
+    {
+      "feature": "condition_category_Under evaluation",
+      "importance": 0.0168
+    },
+    {
+      "feature": "procedure_type_Cardiac surgery",
+      "importance": 0.0165
+    },
+    {
+      "feature": "procedure_type_Infection admission",
+      "importance": 0.0158
+    }
+  ],
+  "scenarios_represented": 12
+}

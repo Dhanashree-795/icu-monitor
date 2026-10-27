@@ -26,7 +26,7 @@ export const TurnoverBoardPage: React.FC<TurnoverBoardPageProps> = ({ userRole, 
   const [successMessage, setSuccessMessage] = useState<string>("");
   const [processingTaskId, setProcessingTaskId] = useState<number | null>(null);
 
-  const canManageCleaning = userRole === "HOUSEKEEPING" || userRole === "ADMIN" || userRole === "NURSE";
+  const canManageCleaning = userRole === "HOUSEKEEPING";
 
   async function loadTasks() {
     setIsLoading(true);
@@ -153,7 +153,7 @@ export const TurnoverBoardPage: React.FC<TurnoverBoardPageProps> = ({ userRole, 
         <div className="info-banner">
           <Sparkles size={16} />
           <span>
-            You are logged in as <strong>{userRole}</strong>. This board is in read-only observation mode for your role. Only Housekeeping staff, Nurses, and Administrators can start or complete turnover tasks.
+            You are logged in as <strong>{userRole}</strong>. This board is in read-only observation mode for your role. Cleaning tasks and turnovers are performed exclusively by Housekeeping staff.
           </span>
         </div>
       )}
@@ -196,6 +196,10 @@ export const TurnoverBoardPage: React.FC<TurnoverBoardPageProps> = ({ userRole, 
                         <AlertTriangle size={12} /> Airborne Isolation Protocol Required
                       </div>
                     )}
+
+                    <div className="task-assigned">
+                      Cleaner: <strong>{task.assigned_user_name || "Unassigned"}</strong>
+                    </div>
 
                     {task.notes && <p className="task-notes">{task.notes}</p>}
 
@@ -251,11 +255,9 @@ export const TurnoverBoardPage: React.FC<TurnoverBoardPageProps> = ({ userRole, 
 
                     <div className="task-unit-name">{task.unit_name}</div>
 
-                    {task.assigned_user_email && (
-                      <div className="task-assigned">
-                        Assigned: <strong>{task.assigned_user_email}</strong>
-                      </div>
-                    )}
+                    <div className="task-assigned">
+                      Cleaner: <strong>{task.assigned_user_name || "Unassigned"}</strong>
+                    </div>
 
                     {task.notes && <p className="task-notes">{task.notes}</p>}
 

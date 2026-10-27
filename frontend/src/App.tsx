@@ -13,11 +13,7 @@ import {
   Brush,
   ArrowRight,
   Activity,
-  CheckCircle2,
-  AlertCircle,
-  LogOut,
   Lock,
-  LayoutDashboard,
 } from "lucide-react";
 import "./App.css";
 import React, { useEffect, useState } from "react";
@@ -41,7 +37,7 @@ const roles = [
     color: "#4765cc",
     emailDomain: "admin.icu.in",
     emailPattern: /^[a-zA-Z0-9._%+-]+@admin\.icu\.in$/i,
-    emailExample: "admin@admin.icu.in",
+    emailExample: "ananya.iyer@admin.icu.in",
   },
   {
     id: "doctor",
@@ -52,7 +48,7 @@ const roles = [
     color: "#168b82",
     emailDomain: "doctor.icu.in",
     emailPattern: /^[a-zA-Z0-9._%+-]+@doctor\.icu\.in$/i,
-    emailExample: "doctor@doctor.icu.in",
+    emailExample: "rajesh.sharma@doctor.icu.in",
   },
   {
     id: "nurse",
@@ -63,7 +59,7 @@ const roles = [
     color: "#d17a37",
     emailDomain: "nurse.icu.in",
     emailPattern: /^[a-zA-Z0-9._%+-]+@nurse\.icu\.in$/i,
-    emailExample: "nurse@nurse.icu.in",
+    emailExample: "lakshmi.devi@nurse.icu.in",
   },
   {
     id: "housekeeping",
@@ -74,63 +70,37 @@ const roles = [
     color: "#8b60b5",
     emailDomain: "housekeeping.icu.in",
     emailPattern: /^[a-zA-Z0-9._%+-]+@housekeeping\.icu\.in$/i,
-    emailExample: "housekeeping@housekeeping.icu.in",
+    emailExample: "suresh.kumar@housekeeping.icu.in",
   },
 ];
 
 interface LandingPageProps {
-  currentUser: AuthUser | null;
+  currentUser?: AuthUser | null;
 }
 
-function LandingPage({ currentUser }: LandingPageProps) {
+function LandingPage({ currentUser: _currentUser }: LandingPageProps) {
   const navigate = useNavigate();
 
   return (
-    <div className="app">
-      <header className="header">
+    <div className="landing-app">
+      <header className="header landing-header">
         <div className="brand">
-          <div className="brand-icon">
-            <Activity size={26} />
-          </div>
-          <div>
-            <h2>ICU Monitor</h2>
+          <img
+            src="/assets/icu-logo.png"
+            alt="AcuityCare Logo"
+            className="brand-logo-img"
+          />
+          <div className="brand-text">
+            <h2>AcuityCare</h2>
             <span>Intelligent Resource Management</span>
           </div>
         </div>
-        <div className="demo-label">DEMO SYSTEM</div>
       </header>
 
-      <main className="main">
-        <div className="intro">
-          <div className="eyebrow">SMART ICU MANAGEMENT</div>
-          <h1>Welcome to ICU Monitor</h1>
-          <p>Intelligent ICU Bed Readiness & Resource Management</p>
-          <p className="subtext">
-            A unified clinical platform for monitoring ICU bed occupancy, automating turnover decontamination, and anticipating resource availability.
-          </p>
-
-          {/* Quick jump to dashboard if already authenticated */}
-          {currentUser && (
-            <div style={{ marginTop: "24px" }}>
-              <button
-                type="button"
-                className="btn-primary"
-                style={{ margin: "0 auto", padding: "12px 24px", fontSize: "14px" }}
-                onClick={() => navigate("/app/dashboard")}
-              >
-                <LayoutDashboard size={18} />
-                <span>Enter ICU Operations Dashboard ({currentUser.email})</span>
-                <ArrowRight size={16} />
-              </button>
-            </div>
-          )}
-        </div>
-
-        <div className="section-heading">
-          <h2>Select your role portal</h2>
-          <p>Choose your designated portal to sign in</p>
-        </div>
-
+      <main className="landing-main">
+        <h1 className="landing-intro">
+          One platform. Four roles. Smarter ICU resource management.
+        </h1>
         <div className="role-grid">
           {roles.map((role) => {
             const Icon = role.icon;
@@ -157,11 +127,6 @@ function LandingPage({ currentUser }: LandingPageProps) {
           })}
         </div>
       </main>
-
-      <footer className="footer">
-        <p>Demonstration system using synthetic data only. Not a certified medical device.</p>
-        <span>© 2026 ICU Monitor Platform</span>
-      </footer>
     </div>
   );
 }
@@ -181,13 +146,11 @@ function RoleLoginPortal({ currentUser, setCurrentUser }: RoleLoginPortalProps) 
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [csrfToken, setCsrfToken] = useState<string>("");
-  const [permTestResult, setPermTestResult] = useState<{
-    endpoint: string;
-    status: number;
-    text: string;
-    isError: boolean;
-  } | null>(null);
+
+  // If already authenticated with this portal's role, directly navigate to the authorized dashboard
+  if (currentUser && selectedRole && currentUser.role === selectedRole.roleName) {
+    return <Navigate to="/app/dashboard" replace />;
+  }
 
   if (!selectedRole) {
     return (
@@ -239,69 +202,27 @@ function RoleLoginPortal({ currentUser, setCurrentUser }: RoleLoginPortalProps) 
         return;
       }
 
-      if (data.user?.role !== selectedRole?.roleName) {
+      // Enforce that the user role verified and returned by backend matches the portal
+      if (!data.user || data.user.role !== selectedRole?.roleName) {
         setError(
           `Access denied. Your account is assigned role '${data.user?.role}', which cannot access the ${selectedRole?.title} portal.`
         );
         return;
       }
 
+      // Establish authenticated session with backend-validated user
       setCurrentUser(data.user);
       if (data.csrfToken) {
-        setCsrfToken(data.csrfToken);
         setCachedCsrfToken(data.csrfToken);
       }
       setPassword("");
+
+      // Redirect directly to the authorized role dashboard
+      navigate("/app/dashboard", { replace: true });
     } catch (_err) {
       setError("Unable to connect to backend service. Please ensure API is running.");
     } finally {
       setIsLoading(false);
-    }
-  }
-
-  async function handleLogout() {
-    setIsLoading(true);
-    try {
-      await fetch("/api/auth/logout", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-csrf-token": csrfToken,
-        },
-        credentials: "include",
-      });
-    } catch (_err) {
-      // Ignore
-    } finally {
-      setCurrentUser(null);
-      setCsrfToken("");
-      setPermTestResult(null);
-      setIsLoading(false);
-    }
-  }
-
-  async function testProtectedEndpoint(targetRole: string) {
-    setPermTestResult(null);
-    try {
-      const res = await fetch(`/api/protected/${targetRole.toLowerCase()}`, {
-        credentials: "include",
-      });
-
-      const body = await res.json();
-      setPermTestResult({
-        endpoint: `/api/protected/${targetRole.toLowerCase()}`,
-        status: res.status,
-        text: body.message || JSON.stringify(body),
-        isError: !res.ok,
-      });
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : "Request failed";
-      setPermTestResult({
-        endpoint: `/api/protected/${targetRole.toLowerCase()}`,
-        status: 0,
-        text: `Network failure: ${msg}`,
-        isError: true,
-      });
     }
   }
 
@@ -325,143 +246,55 @@ function RoleLoginPortal({ currentUser, setCurrentUser }: RoleLoginPortalProps) 
         </div>
 
         <h1>{selectedRole.title} Portal</h1>
-        <p className="login-subtitle">
-          {currentUser && currentUser.role === selectedRole.roleName
-            ? "Session authenticated via secure HTTP-only cookie."
-            : `Sign in with your ${selectedRole.emailDomain} credentials.`}
-        </p>
 
-        {currentUser && currentUser.role === selectedRole.roleName ? (
-          <div className="portal-session-panel">
-            <div className="auth-success-banner">
-              <CheckCircle2 size={18} />
-              <span>
-                Authenticated as <strong>{currentUser.email}</strong>
-              </span>
-            </div>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="email">Email Address</label>
+          <input
+            id="email"
+            type="email"
+            autoComplete="email"
+            value={email}
+            disabled={isLoading}
+            onChange={(event) => {
+              setEmail(event.target.value);
+              setError("");
+            }}
+          />
 
-            <div className="user-badge-row">
-              <span>Verified Database Role:</span>
-              <span
-                className="role-pill"
-                style={{
-                  color: selectedRole.color,
-                  backgroundColor: `${selectedRole.color}20`,
-                }}
-              >
-                {currentUser.role}
-              </span>
-            </div>
-
-            {/* Direct button to functional application */}
-            <button
-              type="button"
-              className="btn-primary"
-              style={{ width: "100%", justifyContent: "center", padding: "12px", marginTop: "8px" }}
-              onClick={() => navigate("/app/dashboard")}
-            >
-              <LayoutDashboard size={16} />
-              <span>Enter ICU Operations Dashboard</span>
-              <ArrowRight size={15} />
-            </button>
-
-            {/* Permission Verification Tester */}
-            <div className="perm-test-box">
-              <h4>Role Authorization Verifier</h4>
-              <p>Verify backend role isolation. Endpoints for unauthorized roles will return 403 Forbidden:</p>
-
-              <div className="perm-buttons">
-                {roles.map((r) => (
-                  <button
-                    key={r.id}
-                    type="button"
-                    className="perm-btn"
-                    onClick={() => testProtectedEndpoint(r.roleName)}
-                  >
-                    Test {r.title}
-                  </button>
-                ))}
-              </div>
-
-              {permTestResult && (
-                <div className={`perm-output ${permTestResult.isError ? "forbidden" : "success"}`}>
-                  <strong>{permTestResult.endpoint}</strong> (HTTP {permTestResult.status}):
-                  <div>{permTestResult.text}</div>
-                </div>
-              )}
-            </div>
-
-            <button
-              type="button"
-              className="logout-button"
-              onClick={handleLogout}
-              disabled={isLoading}
-            >
-              <LogOut size={16} style={{ verticalAlign: "middle", marginRight: "6px" }} />
-              Sign out
-            </button>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit}>
-            {currentUser && currentUser.role !== selectedRole.roleName && (
-              <div className="login-error" style={{ display: "flex", gap: "8px", alignItems: "flex-start" }}>
-                <AlertCircle size={18} style={{ flexShrink: 0, marginTop: "2px" }} />
-                <span>
-                  Currently logged in as <strong>{currentUser.email}</strong> ({currentUser.role}). Sign in below with an authorized {selectedRole.title} account or sign out.
-                </span>
-              </div>
-            )}
-
-            <label htmlFor="email">Email Address</label>
+          <label htmlFor="password">Password</label>
+          <div className="password-field">
             <input
-              id="email"
-              type="email"
-              placeholder={`e.g. ${selectedRole.emailExample}`}
-              autoComplete="email"
-              value={email}
+              id="password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter your password"
+              autoComplete="current-password"
+              value={password}
               disabled={isLoading}
               onChange={(event) => {
-                setEmail(event.target.value);
+                setPassword(event.target.value);
                 setError("");
               }}
             />
-            <span className="input-hint">Format: {selectedRole.emailExample}</span>
-
-            <label htmlFor="password">Password</label>
-            <div className="password-field">
-              <input
-                id="password"
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
-                autoComplete="current-password"
-                value={password}
-                disabled={isLoading}
-                onChange={(event) => {
-                  setPassword(event.target.value);
-                  setError("");
-                }}
-              />
-              <button
-                type="button"
-                className="password-toggle"
-                onClick={() => setShowPassword(!showPassword)}
-                disabled={isLoading}
-              >
-                {showPassword ? "Hide" : "Show"}
-              </button>
-            </div>
-
-            {error && (
-              <p className="login-error" role="alert">
-                {error}
-              </p>
-            )}
-
-            <button type="submit" className="login-submit" disabled={isLoading}>
-              {isLoading ? "Signing in..." : "Sign in"}
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowPassword(!showPassword)}
+              disabled={isLoading}
+            >
+              {showPassword ? "Hide" : "Show"}
             </button>
-          </form>
-        )}
+          </div>
+
+          {error && (
+            <p className="login-error" role="alert">
+              {error}
+            </p>
+          )}
+
+          <button type="submit" className="login-submit" disabled={isLoading}>
+            {isLoading ? "Signing in..." : "Sign in"}
+          </button>
+        </form>
 
         <p className="login-disclaimer">
           <Lock size={12} style={{ verticalAlign: "middle", marginRight: "4px" }} />
@@ -492,7 +325,7 @@ function App() {
           }
         }
       })
-      .catch(() => {})
+      .catch(() => { })
       .finally(() => {
         if (isMounted) setIsCheckingAuth(false);
       });
@@ -518,7 +351,7 @@ function App() {
     return (
       <div className="placeholder">
         <Activity size={32} className="spin-icon" style={{ color: "#168b82" }} />
-        <p>Connecting to ICU Monitor service...</p>
+        <p>Connecting to AcuityCare service...</p>
       </div>
     );
   }
@@ -554,12 +387,14 @@ function App() {
             <Route index element={<Navigate to="/app/dashboard" replace />} />
             <Route
               path="dashboard"
-              element={<DashboardPage userRole={currentUser.role} refreshTrigger={refreshTrigger} />}
+              element={<DashboardPage userRole={currentUser.role} currentUser={currentUser} refreshTrigger={refreshTrigger} />}
             />
-            <Route
-              path="beds"
-              element={<BedManagementPage userRole={currentUser.role} refreshTrigger={refreshTrigger} />}
-            />
+            {currentUser.role !== "HOUSEKEEPING" && (
+              <Route
+                path="beds"
+                element={<BedManagementPage userRole={currentUser.role} currentUser={currentUser} refreshTrigger={refreshTrigger} />}
+              />
+            )}
             <Route
               path="turnover"
               element={<TurnoverBoardPage userRole={currentUser.role} refreshTrigger={refreshTrigger} />}

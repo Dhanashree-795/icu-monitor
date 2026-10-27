@@ -28,12 +28,14 @@ export interface AppConfig {
     housekeeping?: string;
     fallbackDefault?: string;
   };
+  losMlApiUrl: string;
 }
 
 export const config: AppConfig = {
   port: Number(process.env.PORT) || 5000,
   nodeEnv: process.env.NODE_ENV || "development",
   frontendUrl: process.env.FRONTEND_URL || "http://localhost:5173",
+  losMlApiUrl: process.env.LOS_ML_API_URL || "http://127.0.0.1:8000",
   db: {
     host: process.env.DB_HOST || "localhost",
     port: Number(process.env.DB_PORT) || 5432,

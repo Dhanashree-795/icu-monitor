@@ -6,6 +6,7 @@ import { checkDbConnection, pool } from "./db/index";
 import authRoutes from "./routes/auth";
 import protectedRoutes from "./routes/protected";
 import icuRoutes from "./routes/icu";
+import mlRoutes from "./routes/ml";
 import { csrfProtection } from "./middleware/auth";
 
 const app = express();
@@ -56,6 +57,7 @@ app.get("/api/health", async (_req: Request, res: Response) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/protected", protectedRoutes);
 app.use("/api/icu", icuRoutes);
+app.use("/api/ml", mlRoutes);
 
 // Fallback 404 handler
 app.use((_req: Request, res: Response) => {
